@@ -8,14 +8,12 @@ const WEB_URL = PORT === 3000 ? "http://localhost:3000/" : "https://blackjack-mu
 
 const wss = new WebSocket.Server({ server:server })
 
-
 // Serve all the static files, (ex. index.html app.js style.css)
 app.use(express.static("public/"));
 // Before 8081
 server.listen(PORT, () =>
   console.log(`Listening on ${process.env.PORT} or 3000`)
 );
-
 
 
 // hashmap clients
