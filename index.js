@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3000;
 const WebSocket = require("ws")
 const WEB_URL = PORT === 3000 ? "http://localhost:3000/" : "https://blackjack-bedirhan.herokuapp.com/";
 
+
 const wss = new WebSocket.Server({ server:server })
 
 // Serve all the static files, (ex. index.html app.js style.css)
