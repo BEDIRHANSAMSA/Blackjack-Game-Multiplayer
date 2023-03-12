@@ -9,6 +9,7 @@ const WEB_URL =
     ? "http://localhost:3000/"
     : "https://blackjack-bedirhan.herokuapp.com/";
 
+<<<<<<< HEAD
 const wss = new WebSocket.Server({ server: server });
 =======
 
