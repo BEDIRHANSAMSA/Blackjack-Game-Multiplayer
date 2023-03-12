@@ -3,10 +3,13 @@ const express = require("express");
 const app = express();
 const server = require("http").createServer(app);
 const PORT = process.env.PORT || 3000;
-const WebSocket = require("ws")
-const WEB_URL = PORT === 3000 ? "http://localhost:3000/" : "https://blackjack-bedirhan.herokuapp.com/";
+const WebSocket = require("ws");
+const WEB_URL =
+  PORT === 3000
+    ? "http://localhost:3000/"
+    : "https://blackjack-bedirhan.herokuapp.com/";
 
-const wss = new WebSocket.Server({ server:server })
+const wss = new WebSocket.Server({ server: server });
 
 // Serve all the static files, (ex. index.html app.js style.css)
 app.use(express.static("public/"));
@@ -14,7 +17,6 @@ app.use(express.static("public/"));
 server.listen(PORT, () =>
   console.log(`Listening on ${process.env.PORT} or 3000`)
 );
-
 
 // hashmap clients
 const clients = {};
@@ -25,9 +27,8 @@ const spectators = {};
 let dealer = null;
 let gameOn = null;
 
-
-
-wss.on("connection", (ws) => { // wsServer || wss AND request || connection
+wss.on("connection", (ws) => {
+  // wsServer || wss AND request || connection
   // Someone trying to connect
   // const connection = connection.accept(null, connection.origin);
   ws.on("open", () => console.log("opened")); // connection || wss
@@ -377,7 +378,6 @@ wss.on("connection", (ws) => { // wsServer || wss AND request || connection
       spectators.forEach((c) => {
         clients[c.clientId].ws.send(JSON.stringify(payLoad));
       });
-
     }
 
     if (result.method === "updatePlayerCards") {
@@ -533,13 +533,12 @@ wss.on("connection", (ws) => { // wsServer || wss AND request || connection
       spectators.forEach((c) => {
         clients[c.clientId].ws.send(JSON.stringify(payLoad));
       });
-
     }
 
     if (result.method === "playersLength") {
       const gameId = result.gameId;
       const game = games[gameId];
-      const playersLength = game.spectators.length;
+      const playersLength = game.spectators?.length;
 
       const payLoadLength = {
         method: "playersLength",
