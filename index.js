@@ -6,15 +6,10 @@ const PORT = process.env.PORT || 3000;
 const WebSocket = require("ws");
 const WEB_URL =
   PORT === 3000
-    ? "http://localhost:3000/"
+    ? "http://159.253.36.221:3000/"
     : "https://blackjack-bedirhan.herokuapp.com/";
 
-<<<<<<< HEAD
 const wss = new WebSocket.Server({ server: server });
-=======
-
-const wss = new WebSocket.Server({ server:server })
->>>>>>> 90b2f5fd213be81da0368074f16dd451be336338
 
 // Serve all the static files, (ex. index.html app.js style.css)
 app.use(express.static("public/"));
@@ -541,8 +536,11 @@ wss.on("connection", (ws) => {
     }
 
     if (result.method === "playersLength") {
+      console.log(result);
+      console.log(games);
       const gameId = result.gameId;
       const game = games[gameId];
+      console.log(game);
       const playersLength = game.spectators?.length;
 
       const payLoadLength = {
